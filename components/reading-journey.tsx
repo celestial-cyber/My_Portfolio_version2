@@ -46,6 +46,7 @@ export default function ReadingJourney() {
       { title: "Notes on a Nervous Planet", author: "Matt Haig" },
       { title: "You Are Born to Blossomt", author: "Dr. A.P.J. Abdul Kalam & Arun Tiwari" },
       { title: "Reasons to Stay Alive", author: "Matt Haig" },
+      { title: "The Midnight Library", author: "Matt Haig" },
      
     ],
   }
