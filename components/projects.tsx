@@ -6,17 +6,8 @@ import Image from "next/image"
 import { ExternalLink, Github } from "lucide-react"
 
 import { Button } from "@/components/ui/button"
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardFooter,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
 import { ErrorBoundary } from "@/components/error-boundary"
-import { Description } from "@radix-ui/react-toast"
 
 export default function Projects() {
   const projects = [
@@ -164,42 +155,40 @@ export default function Projects() {
             </div>
           </div>
 
-          {/* Project Cards Grid */}
-          <div className="mx-auto mt-12 grid max-w-5xl gap-6 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
+          {/* Project List */}
+          <div className="mx-auto mt-12 max-w-5xl space-y-4">
             {filteredProjects.length > 0 ? (
               filteredProjects.map((project, index) => (
                 <motion.div
                   key={project.id}
                   initial={{ opacity: 0, x: -40 }}
                   whileInView={{ opacity: 1, x: 0 }}
-                  whileHover={{ scale: 1.03 }}
                   viewport={{ once: true }}
                   transition={{ duration: 0.4, delay: index * 0.15 }}
-                  className="flex"
+                  className="flex flex-col md:flex-row gap-4 p-4 border border-purple-500 rounded-lg bg-white/5 backdrop-blur-md hover:shadow-lg hover:bg-white/10 transition-all duration-300"
                 >
-                  <Card className="flex flex-col border border-purple-500 bg-white/5 backdrop-blur-md hover:shadow-xl transition-all duration-300">
-                    <div className="relative aspect-video overflow-hidden">
-                      <Image
-                        src={project.image}
-                        alt={project.title}
-                        fill
-                        className="object-cover transition-transform duration-300 hover:scale-105"
-                      />
-                    </div>
-                    <CardHeader>
-                      <CardTitle>{project.title}</CardTitle>
-                      <CardDescription>{project.description}</CardDescription>
-                    </CardHeader>
-                    <CardContent className="flex-grow">
-                      <div className="flex flex-wrap gap-2">
+                  <div className="flex-shrink-0 w-full md:w-40 h-32">
+                    <Image
+                      src={project.image}
+                      alt={project.title}
+                      width={160}
+                      height={128}
+                      className="w-full h-full object-cover rounded transition-transform duration-300 hover:scale-105"
+                    />
+                  </div>
+                  <div className="flex-grow flex flex-col justify-between">
+                    <div>
+                      <h3 className="text-xl font-semibold text-purple-200 mb-2">{project.title}</h3>
+                      <p className="text-muted-foreground mb-3">{project.description}</p>
+                      <div className="flex flex-wrap gap-2 mb-4">
                         {project.tags.map((tag) => (
                           <Badge key={tag} variant="secondary">
                             {tag}
                           </Badge>
                         ))}
                       </div>
-                    </CardContent>
-                    <CardFooter className="flex justify-between px-6 pb-6">
+                    </div>
+                    <div className="flex flex-wrap gap-2">
                       <Button variant="outline" size="sm" asChild>
                         <a href={project.githubUrl} target="_blank" rel="noopener noreferrer">
                           <Github className="mr-2 h-4 w-4" />
@@ -214,12 +203,12 @@ export default function Projects() {
                           </a>
                         </Button>
                       )}
-                    </CardFooter>
-                  </Card>
+                    </div>
+                  </div>
                 </motion.div>
               ))
             ) : (
-              <div className="col-span-full py-12 text-center">
+              <div className="py-12 text-center">
                 <p className="text-muted-foreground">No projects found in this category.</p>
               </div>
             )}

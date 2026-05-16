@@ -2,9 +2,7 @@
 
 import { useState } from "react"
 import { motion } from "framer-motion"
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Trophy, Medal, Award, ExternalLink } from "lucide-react"
-import { Badge } from "@/components/ui/badge"
 import Link from "next/link"
 
 export default function Achievements() {
@@ -90,7 +88,7 @@ export default function Achievements() {
           </div>
         </motion.div>
 
-        <div className="mx-auto mt-12 grid max-w-5xl gap-6 sm:grid-cols-2 md:grid-cols-3">
+        <div className="mx-auto mt-12 max-w-5xl space-y-4">
           {visibleAchievements.map((achievement, index) => (
             <motion.div
               key={achievement.id}
@@ -98,29 +96,30 @@ export default function Achievements() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: index * 0.1 }}
+              className="flex gap-4 p-4 border border-purple-700 rounded-lg bg-[#0e0e0e] hover:shadow-lg hover:shadow-purple-500/50 hover:bg-[#1a1a1a] transition-all duration-300"
             >
-              <Card className="h-full bg-[#0e0e0e] border border-purple-700 hover:shadow-lg hover:shadow-purple-500/50 hover:scale-[1.02] transition-all duration-300">
-                <CardHeader className="pb-2">
-                  <div className="flex justify-between items-center">
-                    <achievement.icon className="h-8 w-8 text-purple-500" />
-                    <Badge variant="outline">{achievement.year}</Badge>
+              <div className="flex-shrink-0 flex items-start pt-1">
+                <achievement.icon className="h-8 w-8 text-purple-500" />
+              </div>
+              <div className="flex-grow">
+                <div className="flex flex-col md:flex-row md:items-start md:justify-between mb-2">
+                  <div>
+                    <h3 className="text-lg font-semibold text-purple-200">{achievement.title}</h3>
+                    <p className="text-sm text-purple-400">{achievement.organization}</p>
                   </div>
-                  <CardTitle className="mt-4 text-purple-200">{achievement.title}</CardTitle>
-                  <CardDescription className="text-purple-400">{achievement.organization}</CardDescription>
-                </CardHeader>
-                <CardContent className="space-y-3">
-                  <p className="text-sm text-muted-foreground">{achievement.description}</p>
-                  {achievement.link && (
-                    <Link
-                      href={achievement.link}
-                      target="_blank"
-                      className="inline-flex items-center gap-1 px-4 py-2 text-sm border border-purple-500 rounded text-purple-300 hover:bg-purple-800 hover:text-white transition w-fit"
-                    >
-                      View Certificate <ExternalLink className="h-4 w-4" />
-                    </Link>
-                  )}
-                </CardContent>
-              </Card>
+                  <span className="text-sm text-purple-300 mt-1 md:mt-0">{achievement.year}</span>
+                </div>
+                <p className="text-sm text-muted-foreground mb-3">{achievement.description}</p>
+                {achievement.link && (
+                  <Link
+                    href={achievement.link}
+                    target="_blank"
+                    className="inline-flex items-center gap-1 px-4 py-2 text-sm border border-purple-500 rounded text-purple-300 hover:bg-purple-800 hover:text-white transition w-fit"
+                  >
+                    View Certificate <ExternalLink className="h-4 w-4" />
+                  </Link>
+                )}
+              </div>
             </motion.div>
           ))}
         </div>
