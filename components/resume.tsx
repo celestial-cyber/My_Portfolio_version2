@@ -10,7 +10,7 @@ export default function Resume() {
     {
       degree: "B.Tech in Artificial Intelligence and Machine Learning",
       institution: "St. Peter's Engineering College",
-      period: "2023 - Present",
+      period: "2023 - 2027",
       type: "current",
     },
     {
@@ -74,7 +74,7 @@ export default function Resume() {
               asChild
             >
               <a
-                href="https://drive.google.com/file/d/1zO71NYnC1oUqrXrTh5jAWP39cGsAA2Pb/view?usp=sharing"
+                href="https://drive.google.com/file/d/1y1O7E4pPKZD0EJaOwZlzW4szjD8mlI9o/view?usp=sharing"
                 target="_blank"
                 rel="noopener noreferrer"
               >

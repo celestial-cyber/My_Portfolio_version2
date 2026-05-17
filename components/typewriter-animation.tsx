@@ -115,7 +115,7 @@ export default function TypewriterAnimation({ className = "" }: TypewriterAnimat
   if (!mounted) {
     return (
       <div className={`flex items-center justify-center min-h-[4rem] ${className}`}>
-        <div className="text-3xl md:text-5xl lg:text-6xl font-mono text-transparent select-none">
+        <div className="text-3xl md:text-5xl lg:text-6xl font-mono bg-gradient-to-r from-purple-400 via-purple-500 to-purple-600 bg-clip-text text-transparent">
           Hey, I'm Celestial V
         </div>
       </div>

@@ -13,15 +13,25 @@ export default function Experience() {
   const experiences = [
     {
       id: 1,
-      role: "Associate",
+      role: "Joint Treasurer,Board Member, L&D Team Lead, SA Projects Developer",
       company: "SPECANCIENS - The Alumni Association of St. Peter's Engineering College",
-      period: "August 2024 - Present",
+      period: "Present",
       description:
-        "I'm a part of SPECANCIENS which is the alumni association of my college. Being in the Reporting team my work is to document everything from the event coverages to the team updates.",
+        "At SPECANCIENS, I actively contribute to organizational growth through leadership, project development, and coordination—managing initiatives across finance, learning & development, and technical systems.",
       technologies: ["Team Work", "Report Writing", "Communication skills", "MS-Word"],
     },
     {
       id: 2,
+      role: "Digital Operations Intern",
+      company: "Conscript",
+      period: "July 2025 - Present",
+      description:
+        "Managed digital operations, structured datasets, and automated data collection using Python and Excel, including scalable scraping workflows processing 20,000+ records while reducing manual effort by 70%.",
+      technologies: ["Content Creation", "Research", "MS Excel" , "Python", "Selenium", "Beautiful Soup"],
+      
+    },
+     {
+      id: 3,
       role: "Web Content Development",
       company: "Marpu Foundation | NGO",
       period: "July 2024",
@@ -30,8 +40,9 @@ export default function Experience() {
       technologies: ["Content Creation", "Research"],
       certificate: "https://drive.google.com/file/d/1-sOFB8yh5HaME1hoZvOPfmLebqKVAxV1/view?usp=sharing",
     },
+ 
     {
-      id: 3,
+      id: 4,
       role: "Summer of AI Internship",
       company: "Swecha Telangana",
       period: "May 2024 - June 2024",
@@ -41,7 +52,7 @@ export default function Experience() {
       certificate: "https://drive.google.com/file/d/1qHegkZ17SAzZD2wHvt5G4rjnPvo0IMoj/view?usp=sharing",
     },
     {
-      id: 4,
+      id: 5,
       role: "Fundraiser and Content Writer",
       company: "Kshitiksha Foundation",
       period: "April 2024 - May 2024",
@@ -51,7 +62,7 @@ export default function Experience() {
       certificate: "https://drive.google.com/file/d/1LVSOpJ9kqbDvVCdUgPmztsCtOY6cr0uo/view?usp=sharing",
     },
     {
-      id: 5,
+      id: 6,
       role: "Content Writer",
       company: "Marpu Foundation",
       period: "December 2023 - January 2024",

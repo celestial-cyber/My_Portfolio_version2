@@ -76,7 +76,7 @@ export default function TypewriterEffect({
 
   return (
     <div className={`text-center ${className}`}>
-      <h1 className="text-3xl md:text-7xl lg:text-6xl font-semibold leading-tight text-transparent bg-gradient-to-r from-purple-300 via-purple-400 to-purple-500 bg-clip-text">
+      <h1 className="text-3xl md:text-7xl lg:text-6xl font-semibold leading-tight text-transparent bg-gradient-to-r from-purple-400 via-purple-500 to-purple-600 bg-clip-text">
         {currentText}
         <span className="animate-blink text-purple-400 ml-1">|</span>
       </h1>

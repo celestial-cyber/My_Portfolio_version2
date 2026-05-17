@@ -699,52 +699,47 @@ export default function Certifications() {
   }
 
   const renderCompetitionCards = (data: typeof competitions) => {
+    const visibleData = showAll ? data : data.slice(0, 3)
+
     return (
-      <motion.div
-        className="mx-auto mt-10 grid max-w-6xl gap-6 md:grid-cols-2 lg:grid-cols-3"
-        initial={{ opacity: 0, y: 20 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true }}
-        transition={{ duration: 0.5 }}
-      >
-        {data.map((cert) => (
-          <motion.div
-            key={cert.id}
-            className="border border-purple-500 rounded-xl bg-[#0e0e0e] text-white shadow-md p-5 hover:bg-purple-950/40 transition-all duration-300"
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5 }}
-            whileHover={{ scale: 1.03 }}
-          >
-            <div className="flex items-center justify-between mb-2">
-              <Badge className="bg-purple-700 text-white">📌</Badge>
-              <div className="flex items-center gap-1 text-purple-300">
-                <Trophy className="w-4 h-4" />
-                <span className="text-sm font-medium">{cert.date}</span>
-              </div>
-            </div>
-            <h4 className="text-lg font-bold leading-snug mb-1 text-purple-100">{cert.name}</h4>
-            <p className="text-sm text-purple-200 mb-2">{cert.issuer}</p>
-            <p className="text-sm mb-3 text-purple-100">{cert.description}</p>
-            <div className="flex flex-wrap gap-2 mb-4">
-              {cert.tags?.map((tag, i) => (
-                <span key={i} className="bg-purple-700 text-white px-2 py-1 rounded-full text-xs">
-                  {tag}
-                </span>
-              ))}
-            </div>
-            <a
-              href={cert.link}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="block w-full text-center px-4 py-2 text-sm font-medium border border-purple-500 text-purple-300 rounded hover:bg-purple-800"
+      <>
+        <ul className="mt-10 max-w-3xl mx-auto space-y-6">
+          {visibleData.map((cert) => (
+            <motion.li
+              key={cert.id}
+              className="border border-purple-500 rounded-xl p-4 text-white bg-[#0e0e0e] hover:bg-purple-950/40 transition-all duration-300"
+              whileHover={{ scale: 1.03 }}
             >
-              🔗 View Certificate
-            </a>
-          </motion.div>
-        ))}
-      </motion.div>
+              <div className="flex justify-between items-center">
+                <div>
+                  <h4 className="text-lg font-bold mb-1 text-purple-100">{cert.name}</h4>
+                  <p className="text-sm text-purple-300">{cert.issuer}</p>
+                  <p className="text-xs text-purple-400 mt-1">{cert.date}</p>
+                </div>
+                <a
+                  href={cert.link}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-sm border border-purple-500 text-purple-300 rounded px-3 py-1 hover:bg-purple-800 flex items-center gap-1"
+                >
+                  <ExternalLink className="w-4 h-4" /> View Certificate
+                </a>
+              </div>
+            </motion.li>
+          ))}
+        </ul>
+        {data.length > 3 && (
+          <div className="mt-8 text-center">
+            <Button
+              variant="outline"
+              className="border-purple-500 text-purple-300"
+              onClick={() => setShowAll(!showAll)}
+            >
+              {showAll ? "Hide" : "Show More Certifications"}
+            </Button>
+          </div>
+        )}
+      </>
     )
   }
 
