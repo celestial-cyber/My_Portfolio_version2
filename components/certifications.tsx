@@ -2,13 +2,11 @@
 
 import { useState } from "react"
 import { motion } from "framer-motion"
-import { Trophy, ExternalLink } from "lucide-react"
-import { Badge } from "@/components/ui/badge"
+import { ExternalLink } from "lucide-react"
 import { Button } from "@/components/ui/button"
 
 export default function Certifications() {
   const [activeTab, setActiveTab] = useState<"courses" | "competitions">("courses")
-  const [showAll, setShowAll] = useState(false)
 
   const courses = [
     {
@@ -653,141 +651,81 @@ export default function Certifications() {
 ];
 
 
-  const renderCoursesList = (data: typeof courses) => {
-    const visibleData = showAll ? data : data.slice(0, 3)
-
-    return (
-      <>
-        <ul className="mt-10 max-w-3xl mx-auto space-y-6">
-          {visibleData.map((cert) => (
-            <motion.li
-              key={cert.id}
-              className="border border-purple-500 rounded-xl p-4 text-white bg-[#0e0e0e] hover:bg-purple-950/40 transition-all duration-300"
-              whileHover={{ scale: 1.03 }}
-            >
-              <div className="flex justify-between items-center">
-                <div>
-                  <h4 className="text-lg font-bold mb-1 text-purple-100">{cert.name}</h4>
-                  <p className="text-sm text-purple-300">{cert.issuer}</p>
-                  <p className="text-xs text-purple-400 mt-1">{cert.date}</p>
-                </div>
-                <a
-                  href={cert.link}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-sm border border-purple-500 text-purple-300 rounded px-3 py-1 hover:bg-purple-800 flex items-center gap-1"
-                >
-                  <ExternalLink className="w-4 h-4" /> View Certificate
-                </a>
-              </div>
-            </motion.li>
-          ))}
-        </ul>
-        {data.length > 3 && (
-          <div className="mt-8 text-center">
-            <Button
-              variant="outline"
-              className="border-purple-500 text-purple-300"
-              onClick={() => setShowAll(!showAll)}
-            >
-              {showAll ? "Hide" : "Show More Certifications"}
-            </Button>
-          </div>
-        )}
-      </>
-    )
-  }
-
-  const renderCompetitionCards = (data: typeof competitions) => {
-    return (
-      <motion.div
-        className="mx-auto mt-10 grid max-w-6xl gap-6 md:grid-cols-2 lg:grid-cols-3"
-        initial={{ opacity: 0, y: 20 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true }}
-        transition={{ duration: 0.5 }}
-      >
-        {data.map((cert) => (
-          <motion.div
-            key={cert.id}
-            className="border border-purple-500 rounded-xl bg-[#0e0e0e] text-white shadow-md p-5 hover:bg-purple-950/40 transition-all duration-300"
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5 }}
-            whileHover={{ scale: 1.03 }}
-          >
-            <div className="flex items-center justify-between mb-2">
-              <Badge className="bg-purple-700 text-white">📌</Badge>
-              <div className="flex items-center gap-1 text-purple-300">
-                <Trophy className="w-4 h-4" />
-                <span className="text-sm font-medium">{cert.date}</span>
-              </div>
-            </div>
-            <h4 className="text-lg font-bold leading-snug mb-1 text-purple-100">{cert.name}</h4>
-            <p className="text-sm text-purple-200 mb-2">{cert.issuer}</p>
-            <p className="text-sm mb-3 text-purple-100">{cert.description}</p>
-            <div className="flex flex-wrap gap-2 mb-4">
-              {cert.tags?.map((tag, i) => (
-                <span key={i} className="bg-purple-700 text-white px-2 py-1 rounded-full text-xs">
-                  {tag}
-                </span>
-              ))}
-            </div>
-            <a
-              href={cert.link}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="block w-full text-center px-4 py-2 text-sm font-medium border border-purple-500 text-purple-300 rounded hover:bg-purple-800"
-            >
-              🔗 View Certificate
-            </a>
-          </motion.div>
-        ))}
-      </motion.div>
-    )
-  }
+  const allCerts = activeTab === "courses" ? courses : competitions
 
   return (
     <section id="certifications" className="py-20 md:py-28 bg-black">
-      <div className="container px-4 md:px-6">
+      <div className="container px-4 md:px-6 max-w-4xl mx-auto">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.5 }}
-          className="flex flex-col items-center justify-center space-y-4 text-center"
+          className="text-center mb-12"
         >
-          <div className="space-y-2">
-            <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl bg-gradient-to-r from-purple-400 via-purple-500 to-purple-600 bg-clip-text text-transparent relative inline-block">
-              Certifications
-              <div className="absolute bottom-0 left-0 w-full h-0.5 bg-gradient-to-r from-purple-400 via-purple-500 to-purple-600"></div>
-            </h2>
-            <p className="mx-auto max-w-[700px] text-muted-foreground md:text-xl/relaxed">
-              {courses.length + competitions.length} Total Certifications
-            </p>
-          </div>
-
-          <div className="flex space-x-4 mt-6">
-            <Button
-              onClick={() => { setActiveTab("courses"); setShowAll(false); }}
-              variant={activeTab === "courses" ? "default" : "outline"}
-              className="flex items-center gap-2"
-            >
-              📘 Course Certifications
-            </Button>
-            <Button
-              onClick={() => { setActiveTab("competitions"); setShowAll(false); }}
-              variant={activeTab === "competitions" ? "default" : "outline"}
-              className="flex items-center gap-2"
-            >
-              🏆 Competition Participation
-            </Button>
-            
-          </div>
+          <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl bg-gradient-to-r from-purple-400 via-purple-500 to-purple-600 bg-clip-text text-transparent mb-4">
+            Certifications
+          </h2>
+          <p className="text-purple-300 text-lg">
+            {allCerts.length} {activeTab === "courses" ? "Courses" : "Competitions"}
+          </p>
         </motion.div>
 
-        {activeTab === "courses" ? renderCoursesList(courses) : renderCompetitionCards(competitions)}
+        <div className="flex gap-3 justify-center mb-10">
+          <Button
+            onClick={() => setActiveTab("courses")}
+            variant={activeTab === "courses" ? "default" : "outline"}
+            className="gap-2"
+          >
+            📘 Courses
+          </Button>
+          <Button
+            onClick={() => setActiveTab("competitions")}
+            variant={activeTab === "competitions" ? "default" : "outline"}
+            className="gap-2"
+          >
+            🏆 Competitions
+          </Button>
+        </div>
+
+        <motion.div
+          className="space-y-3"
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.5 }}
+        >
+          {allCerts.map((cert, idx) => (
+            <motion.div
+              key={cert.id}
+              initial={{ opacity: 0, x: -20 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.3, delay: idx * 0.02 }}
+              className="flex items-center justify-between p-3 rounded-lg border border-purple-500/20 hover:border-purple-500/50 hover:bg-purple-950/20 transition-all group"
+            >
+              <div className="flex-1 min-w-0">
+                <h4 className="text-purple-100 font-medium text-sm group-hover:text-purple-300 transition-colors truncate">
+                  {cert.name}
+                </h4>
+                <p className="text-purple-400 text-xs mt-0.5">
+                  {cert.issuer} • {cert.date}
+                </p>
+              </div>
+              {cert.link && (
+                <a
+                  href={cert.link}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="ml-3 p-1.5 rounded hover:bg-purple-900/50 transition-colors flex-shrink-0"
+                  title="View Certificate"
+                >
+                  <ExternalLink className="w-4 h-4 text-purple-400" />
+                </a>
+              )}
+            </motion.div>
+          ))}
+        </motion.div>
       </div>
     </section>
   )
