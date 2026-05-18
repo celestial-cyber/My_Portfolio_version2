@@ -12,12 +12,11 @@ export default function Interests() {
   const interests = [
     { id: 1, name: "🧠 Exploring and Learning new things" },
     { id: 2, name: "🤖 AIML, Robotics and Cybersecurity" },
-    { id: 3, name: "🎨 Painting" },
+    { id: 3, name: "🎨 Painting and Sketching" },
     { id: 4, name: "📝 Writing poems and blogs" },
-    { id: 5, name: "⚡ Harry Potter" },
-    { id: 6, name: "🚀 Space Exploration" },
-    { id: 7, name: "📚 Reading" },
-    { id: 8, name: "📷 Photography" },
+    { id: 5, name: "🚀 Space Exploration" },
+    { id: 6, name: "📚 Reading" },
+    { id: 7, name: "📷 Photography" },
   ]
 
   const visibleInterests = showAll ? interests : interests.slice(0, 6)

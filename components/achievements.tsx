@@ -11,9 +11,18 @@ export default function Achievements() {
   const [showAll, setShowAll] = useState(false)
 
   const achievements = [
+      {
+      id: 1,
+      title: "Top Performer inCareer Gateway 2026",
+      organization: "Computer Society of India - SPEC Student Chapter",
+      year: "Feb 2026",
+      description: "Recognized as a top performer in a multi-round placement simulation with the highest HR score",
+      icon: Trophy,
+     
+    },
    
     {
-      id: 1,
+      id: 2,
       title: "1st Place in Painting Competition – AQUILA 2024",
       organization: "St. Peter's Engineering College",
       year: "Feb 2024",
@@ -22,7 +31,7 @@ export default function Achievements() {
       link: "https://drive.google.com/file/d/1Y9sP8_8wP6Yi9UmMFUbgzXHuIMnQG5fy/view?usp=sharing"
     },
     {
-      id: 2,
+      id: 3,
       title: "2nd Prize in Poster Presentation – SPECFIESTA 2024",
       organization: "St. Peter's Engineering College",
       year: "Feb 2024",
@@ -31,7 +40,7 @@ export default function Achievements() {
       link: "https://drive.google.com/file/d/1YtXiZtL8HH9qBWSoxAryOnOgk6CepZz5/view?usp=sharing"
     },
     {
-      id: 3,
+      id: 4,
       title: "Finalist – Code Debugging Event, SPECFIESTA 2024",
       organization: "St. Peter's Engineering College",
       year: "Feb 2024",
@@ -40,7 +49,7 @@ export default function Achievements() {
       link: "https://drive.google.com/file/d/1YEj-sXHH8Su0L1qcWX62eGOl4taE8ebp/view?usp=sharing"
     },
     {
-      id: 4,
+      id: 5,
       title: "Top Performer – Neuro Debugging, AI Infinity'2025",
       organization: "St. Peter's Engineering College",
       year: "Feb 2024",
@@ -49,7 +58,7 @@ export default function Achievements() {
       link: "https://drive.google.com/file/d/1_xU5Hw0zlsWRn9QyXnoR8sXdIQP5CPNs/view?usp=sharing"
     },
     {
-      id: 5,
+      id: 6,
       title: "School Topper – UP High School Board Examination",
       organization: "UP Board",
       year: "#",
@@ -57,7 +66,7 @@ export default function Achievements() {
       icon: Medal
     },
     {
-      id: 6,
+      id: 7,
       title: "1st Place in Essay Writing Competition – Fire Service Week",
       organization: "SSS High School",
       year: "2017",

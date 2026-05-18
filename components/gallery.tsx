@@ -8,31 +8,36 @@ import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
 
 export default function Gallery() {
-  const [selectedImage, setSelectedImage] = useState(null)
+  const [selectedImage, setSelectedImage] = useState<{
+  id: number
+  title: string
+  src: string
+  category: string
+} | null>(null)
 
   const paintings = [
     {
       id: 1,
       title: "Autumn Serenity",
-      src: "paintings/pic 1.jpeg",
+      src: "/paintings/pic 1.jpeg",
       category: "Acrylic",
     },
     {
       id: 2,
       title: "Mountain Lake Camping",
-      src: "paintings/pic 2.jpeg",
+      src: "/paintings/pic 2.jpeg",
       category: "Acrylic",
     },
     {
       id: 3,
       title: "Sunset Reflections",
-      src: "paintings/pic 3.jpeg",
+      src: "/paintings/pic 3.jpeg",
       category: "Acrylic",
     },
     {
       id: 4,
       title: "Dancing in the Rain",
-      src: "paintings/pic 4.jpeg",
+      src: "/paintings/pic 4.jpeg",
       category: "Acrylic",
     },
   ]
@@ -114,7 +119,7 @@ export default function Gallery() {
             asChild
           >
             <a
-              href="https://drive.google.com/drive/folders/1ZyChN5uOwqmyr-YpU0d9GKvi9ODPumEF"
+              href="https://www.instagram.com/the.midnight.canvas/"
               target="_blank"
               rel="noopener noreferrer"
             >

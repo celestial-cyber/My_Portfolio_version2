@@ -7,48 +7,69 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { BookOpen } from "lucide-react"
 
 export default function ReadingJourney() {
-  const [selectedCategory, setSelectedCategory] = useState("Fiction")
+  const [selectedCategory, setSelectedCategory] = useState<
+  "Fiction" | "Knowledge" | "Growth" >("Fiction")
   const [showAll, setShowAll] = useState(false)
 
   const books = {
-    Fiction: [
-      { title: "Harry Potter and the Prisoner of Azkaban", author: "J.K. Rowling" },
-      { title: "Harry Potter and the Philosopher's Stone", author: "J.K. Rowling" },
-      { title: "Harry Potter and the Cursed Child", author: "J.K. Rowling / Jack Thorne" },
-      { title: "The Kite Runner", author: "Khaled Hosseini" },
-      { title: "Gunaho Ka Devta", author: "Dharamvir Bharati" },
-      { title: "It Starts With Us", author: "Colleen Hoover" },
-      { title: "It Ends With Us", author: "Colleen Hoover" },
-      { title: "Half Girlfriend", author: "Chetan Bhagat" },
-      { title: "The Girl in Room 105", author: "Chetan Bhagat" },
-      { title: "2 States", author: "Chetan Bhagat" },
-      { title: "One Arranged Murder", author: "Chetan Bhagat" },
-      { title: "13 Reasons Why", author: "Jay Asher" },
-      { title: "One Indian Girl", author: "Chetan Bhagat" },
-      { title: "The Fault in Our Stars", author: "John Green" },
-      { title: "The Notebook", author: "Nicholas Sparks" },
-      { title: "Revolution 2020", author: "Chetan Bhagat" },
-      { title: "That Night", author: "Nidhi Upadhyay" },
-      { title: "400 Days", author: "Chetan Bhagat" },
-      { title: "Five Point Someone", author: "Chetan Bhagat" },
-      { title: "The Imaginary Friend", author: "Stephen Chbosky" },
-      { title: "The Three Mistakes of My Life", author: "Chetan Bhagat" },
-      { title: "One Night at the Call Center", author: "Chetan Bhagat" },
-    ],
-    Knowledge: [
-      { title: "A Brief History of Time", author: "Stephen Hawking" },
-      { title: "BBC Reith Lectures on Black Holes", author: "Stephen Hawking" },
-      { title: "The Theory of Everything", author: "Stephen Hawking" },
-      {title: "Vedic Maths", author:"Dr. B. Sai Kiran"},
-    ],
-    Growth: [
-      { title: "Wings of Fire", author: "Dr. A.P.J. Abdul Kalam" },
-      { title: "Notes on a Nervous Planet", author: "Matt Haig" },
-      { title: "You Are Born to Blossomt", author: "Dr. A.P.J. Abdul Kalam & Arun Tiwari" },
-      { title: "Reasons to Stay Alive", author: "Matt Haig" },
-      { title: "The Midnight Library", author: "Matt Haig" },
-     
-    ],
+   Fiction: [
+  { title: "Project Hail Mary", author: "Andy Weir" },
+  { title: "White Nights", author: "Fyodor Dostoevsky" },
+  { title: "To Be a Cat", author: "Matt Haig" },
+  { title: "Harry Potter and the Cursed Child", author: "J.K. Rowling / Jack Thorne" },
+  { title: "Harry Potter and the Prisoner of Azkaban", author: "J.K. Rowling" },
+  { title: "Harry Potter and the Chamber of Secrets", author: "J.K. Rowling" },
+  { title: "Harry Potter and the Philosopher's Stone", author: "J.K. Rowling" },
+  { title: "The Kite Runner", author: "Khaled Hosseini" },
+  { title: "Gunahon Ka Devta", author: "Dharamvir Bharati" },
+  { title: "It Starts With Us", author: "Colleen Hoover" },
+  { title: "It Ends With Us", author: "Colleen Hoover" },
+  { title: "Half Girlfriend", author: "Chetan Bhagat" },
+  { title: "The Girl in Room 105", author: "Chetan Bhagat" },
+  { title: "One Arranged Murder", author: "Chetan Bhagat" },
+  { title: "2 States", author: "Chetan Bhagat" },
+  { title: "One Indian Girl", author: "Chetan Bhagat" },
+  { title: "Revolution 2020", author: "Chetan Bhagat" },
+  { title: "Five Point Someone", author: "Chetan Bhagat" },
+  { title: "The Three Mistakes of My Life", author: "Chetan Bhagat" },
+  { title: "400 Days", author: "Chetan Bhagat" },
+  { title: "One Night at the Call Center", author: "Chetan Bhagat" },
+  { title: "13 Reasons Why", author: "Jay Asher" },
+  { title: "The Fault in Our Stars", author: "John Green" },
+  { title: "The Notebook", author: "Nicholas Sparks" },
+  { title: "That Night", author: "Nidhi Upadhyay" },
+  { title: "The Imaginary Friend", author: "Stephen Chbosky" },
+  { title: "Eleven Minutes", author: "Paulo Coelho" },
+  { title: "The Blue Umbrella", author: "Ruskin Bond" },
+  { title: "The Alchemist", author: "Paulo Coelho" },
+  { title: "The Girl Who Knew Too Much", author: "Vikrant Khanna" },
+  { title: "Gitanjali", author: "Rabindranath Tagore" },
+],
+
+Knowledge: [
+  { title: "A Brief History of Time", author: "Stephen Hawking" },
+  { title: "Black Holes: The BBC Reith Lectures", author: "Stephen Hawking" },
+  { title: "The Theory of Everything", author: "Stephen Hawking" },
+  { title: "What Young India Wants", author: "Chetan Bhagat" },
+  { title: "Making India Awesome", author: "Chetan Bhagat" },
+  { title: "The Teacher I Never Met", author: "Dr. A.P.J. Abdul Kalam" },
+  { title: "Biography of Bill Gates", author: "Unknown" },
+  { title: "Wise and Otherwise", author: "Sudha Murty" },
+  { title: "The Bird with Golden Wings", author: "Sudha Murty" },
+],
+
+Growth: [
+  { title: "Ikigai", author: "Héctor García & Francesc Miralles" },
+  { title: "Tuesdays with Morrie", author: "Mitch Albom" },
+  { title: "Wings of Fire", author: "Dr. A.P.J. Abdul Kalam" },
+  { title: "Vision 2020", author: "Dr. A.P.J. Abdul Kalam" },
+  { title: "Ignited Minds", author: "Dr. A.P.J. Abdul Kalam" },
+  { title: "You Are Born to Blossom", author: "Dr. A.P.J. Abdul Kalam & Arun Tiwari" },
+  { title: "Notes on a Nervous Planet", author: "Matt Haig" },
+  { title: "Reasons to Stay Alive", author: "Matt Haig" },
+  { title: "The Midnight Library", author: "Matt Haig" },
+  { title: "The Monk Who Sold His Ferrari", author: "Robin Sharma" },
+],
   }
 
   const categoryIcons = {
@@ -84,12 +105,12 @@ export default function ReadingJourney() {
         </motion.div>
 
         <div className="mt-10 flex flex-wrap justify-center gap-4">
-          {Object.keys(books).map((category) => (
+          {(Object.keys(books) as Array<keyof typeof books>).map((category) => (
             <Button
               key={category}
               variant={selectedCategory === category ? "default" : "outline"}
               onClick={() => {
-                setSelectedCategory(category);
+                setSelectedCategory(category)
                 setShowAll(false);
               }}
               className="bg-gradient-to-br from-purple-600 to-black text-white hover:from-purple-700 hover:to-gray-900"

@@ -52,14 +52,15 @@ export default function About() {
           >
             <h3 className="text-2xl font-bold">Who am I?</h3>
             <p className="text-muted-foreground">
-              I'm a passionate 3rd-year AIML student at St. Peter's Engineering College, blending technical expertise
-              with artistic vision to create digital experiences that explore the intersection of artificial
-              intelligence, cybersecurity, and creative expression.
+             I am an Artificial Intelligence and Machine Learning undergraduate passionate about building technology-driven 
+             solutions that create meaningful real-world impact. My experience spans machine learning, software development, 
+             automation, and data-driven systems, strengthened through internships, hackathons, leadership roles, and hands-on projects.
             </p>
             <p className="text-muted-foreground">
-              As an astrophile, I'm constantly fascinated by the cosmos and how it inspires both my technical and
-              artistic endeavors. My journey combines the precision of code with the freedom of artistic expression,
-              approaching projects holistically with a focus on both functionality and aesthetics.
+              I enjoy transforming ideas into practical solutions—whether through developing intelligent models, 
+              building scalable applications, or designing structured digital experiences. I approach technology 
+              with a balance of analytical thinking, creativity, and continuous learning focusing not only on functionality
+              but also on creating solutions that are efficient, purposeful, and user-focused.
             </p>
             <p className="text-muted-foreground">
               When I'm not working on technical projects, you might find me painting cosmic landscapes, writing blog
@@ -94,8 +95,8 @@ export default function About() {
         <div className="mx-auto mt-12 grid max-w-5xl gap-6 md:grid-cols-3">
           <Card className="border border-purple-500">
             <CardContent className="flex flex-col items-center p-6">
-              <div className="text-4xl font-bold text-primary">3rd</div>
-              <p className="text-center text-sm text-muted-foreground">Year AIML Student</p>
+              <div className="text-4xl font-bold text-primary">Engineering</div>
+              <p className="text-center text-sm text-muted-foreground">Undergrad</p>
             </CardContent>
           </Card>
           <Card className="border border-purple-500">
@@ -106,7 +107,7 @@ export default function About() {
           </Card>
           <Card className="border border-purple-500">
             <CardContent className="flex flex-col items-center p-6">
-              <div className="text-6xl font-bold text-primary">∞</div>
+              <div className="text-2xl font-bold text-primary">Infinite</div>
               <p className="text-center text-sm text-muted-foreground">Curiosity & Learning</p>
             </CardContent>
           </Card>
