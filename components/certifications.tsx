@@ -7,474 +7,651 @@ import { Button } from "@/components/ui/button"
 
 export default function Certifications() {
   const [activeTab, setActiveTab] = useState<"courses" | "competitions">("courses")
+  const [showAll, setShowAll] = useState(false)
+  const INITIAL_COUNT = 5
+ const courses = [
+  // ===================== 2025–2026 =====================
 
-  const courses = [
-    {
-      id: 1,
-      name: "Introduction to Cybersecurity",
-      issuer: "CISCO Networking Academy",
-      date: "May 2023",
-      link: "https://www.credly.com/badges/b3d2ba14-aeb8-40c1-8630-70e387b209fc/public_url",
-      tags: ["Cybersecurity", "Networking"]
-    },
-    {
-      id: 2,
-      name: "Python for Machine Learning Projects",
-      issuer: "St. Peter’s Engineering College",
-      date: "May 2025",
-      link: "https://www.credly.com/badges/c976ccd7-2f18-4b80-8c34-322ab1c58ae3",
-      tags: ["Python", "Machine Learning"]
-    },
-    {
-      id: 3,
-      name: "Networking Basics",
-      issuer: "CISCO Network Academy",
-      date: "May 2025",
-      link: "https://www.credly.com/badges/c976ccd7-2f18-4b80-8c34-322ab1c58ae3",
-      tags: ["Networking"]
-    },
-    {
-      id: 4,
-      name: "Python Essentials 1",
-      issuer: "CISCO Networking Academy",
-      date: "May 2025",
-      link: "https://www.credly.com/badges/9eeb5614-2e35-4fbc-889a-b1e361cbd302",
-      tags: ["Python"]
-    },
-    {
-      id: 5,
-      name: "Python Essentials 2",
-      issuer: "CISCO Networking Academy",
-      date: "May 2025",
-      link: "https://www.credly.com/badges/03aba8c0-27ce-4a57-aa48-1276a0b22f4a/public_url",
-      tags: ["Python"]
-    },
-    {
-      id: 6,
-      name: "Space Exploration Technology: An Overview",
-      issuer: "ISRO, IIRS",
-      date: "May 2025",
-      link: "https://drive.google.com/file/d/1Xfaj1e6hwqwnZFn_ygw5YXPOoQebfsnP/view?usp=sharing",
-      tags: ["Space", "ISRO"]
-    },
-    {
-      id: 7,
-      name: "Geo Data Processing Using Python and ML",
-      issuer: "ISRO, IIRS",
-      date: "Mar 2025",
-      link: "https://drive.google.com/file/d/1MQLnxDwmt8K-fKFp94NLAjxp9vyiQAsJ/view?usp=sharing",
-      tags: ["Python", "Geo Data", "Machine Learning"]
-    },
-    {
-      id: 8,
-      name: "Udyam 2025 – The SpecAnciens Workshop",
-      issuer: "SpecAnciens",
-      date: "Feb 2025",
-      link: "https://drive.google.com/file/d/1YGPhczivei3DgRQUWshiDFDrSOTLxKOf/view?usp=sharing",
-      tags: ["Workshop"]
-    },
-    {
-      id: 9,
-      name: "Data Visualization with Python and R",
-      issuer: "Coursera, Northeastern University",
-      date: "Feb 2025",
-      link: "https://www.coursera.org/account/accomplishments/records/GIAYS7XO9CC8",
-      tags: ["Python", "R", "Visualization"]
-    },
-    {
-      id: 10,
-      name: "Python Data Visualization",
-      issuer: "Coursera, Rice University",
-      date: "Feb 2025",
-      link: "https://www.coursera.org/account/accomplishments/records/HM3WUFDFKVV1",
-      tags: ["Python", "Visualization"]
-    },
-    {
-      id: 11,
-      name: "Quantum Computing Introduction",
-      issuer: "Coursera, Fractal",
-      date: "Feb 2025",
-      link: "https://www.coursera.org/account/accomplishments/records/74P9CVZULTNX",
-      tags: ["Quantum Computing"]
-    },
-    {
-      id: 12,
-      name: "Space Science and Technology Awareness Training (START-2025)",
-      issuer: "ISRO",
-      date: "Feb 2025",
-      link: "https://drive.google.com/file/d/1ZwQbBq7qhXkHGaWEek8gWy2YmPa3Lfqo/view?usp=drive_link",
-      tags: ["Space", "ISRO"]
-    },
-    {
-      id: 13,
-      name: "Awareness on NSIC Activities and Schemes",
-      issuer: "NSIC Technical Service Center",
-      date: "Jan 2025",
-      link: "https://drive.google.com/file/d/1YVMWt5iTtyEhf6I_BMy2cBVOrQO6AtFW/view?usp=sharing",
-      tags: ["Awareness"]
-    },
-    {
-      id: 14,
-      name: "Geo Data Sharing and Cybersecurity",
-      issuer: "ISRO, IIRS",
-      date: "Jan 2025",
-      link: "https://drive.google.com/file/d/16BIUrhf8-Cf8Ezoh3g7VaJU6i7IWhC0v/view?usp=sharing",
-      tags: ["Cybersecurity", "Geo Data"]
-    },
-    {
-      id: 15,
-      name: "Introduction to Sustainability",
-      issuer: "Coursera, University of Illinois Urbana–Champaign",
-      date: "Jan 2025",
-      link: "https://www.coursera.org/account/accomplishments/records/4ZKAYLASMHM1",
-      tags: ["Sustainability"]
-    },
-    {
-      id: 16,
-      name: "Overview of Data Visualization",
-      issuer: "Coursera",
-      date: "Jan 2025",
-      link: "https://www.coursera.org/account/accomplishments/records/T6V0VXSF0PSD",
-      tags: ["Data Visualization"]
-    },
-    {
-      id: 17,
-      name: "Workshop on the Application of Space Technology",
-      issuer: "ISRO, IIRS",
-      date: "Jan 2025",
-      link: "https://drive.google.com/file/d/1cQ1-bRYYH8piSGLm823tUVLkcFw1IST3/view?usp=sharing",
-      tags: ["Space", "Workshop"]
-    },
-    {
-      id: 18,
-      name: "Air Pollution: Implications Monitoring and Modelling",
-      issuer: "ISRO, IIRS",
-      date: "Dec 2024",
-      link: "https://drive.google.com/file/d/1hnHkuPjHOkfS33nDYflSbF2qq2fDUdDg/view?usp=sharing",
-      tags: ["Air Pollution", "ISRO"]
-    },
-    {
-      id: 19,
-      name: "Basics of Remote Sensing and GIS and GNSS",
-      issuer: "ISRO, IIRS",
-      date: "Dec 2024",
-      link: "https://drive.google.com/file/d/1xSJq6GjnOMrv_zKscXz5EZzvmXwzDohQ/view?usp=sharing",
-      tags: ["Remote Sensing", "GIS", "GNSS"]
-    },
-    {
-      id: 20,
-      name: "Overview of Geo Computation and Geo Web Application",
-      issuer: "ISRO, IIRS",
-      date: "Dec 2024",
-      link: "https://drive.google.com/file/d/1rpL22EDj8HT10qNOQ1k7ptBipzkWMdVx/view?usp=sharing",
-      tags: ["Geo Computation", "Web Application"]
-    },
-    {
-      id: 21,
-      name: "Overview of Geographical Information System",
-      issuer: "ISRO, IIRS",
-      date: "Dec 2024",
-      link: "https://drive.google.com/file/d/19rOZ5zoTJjlYfK565iB3XFrTAdkDDdgy/view?usp=sharing",
-      tags: ["GIS"]
-    },
-    {
-      id: 22,
-      name: "RS and GIS Application in Natural Resource Management",
-      issuer: "ISRO, IIRS",
-      date: "Dec 2024",
-      link: "https://drive.google.com/file/d/1aHqkNMAA7b4Gwpwotbd4At6LybLpFqtZ/view?usp=sharing",
-      tags: ["Remote Sensing", "GIS", "Natural Resources"]
-    },
-    {
-      id: 23,
-      name: "Workshop on Deep Learning in Ecological Studies",
-      issuer: "ISRO, IIRS",
-      date: "Dec 2024",
-      link: "https://drive.google.com/file/d/1hPTR644vjrp5T-ugNlWROTMeCCfvYTHm/view?usp=sharing",
-      tags: ["Deep Learning", "Ecology"]
-    },
-{
-      id: 24,
-      name: "Mastering Data Structures Using C and C++",
-      issuer: "Udemy",
-      date: "Nov 2024",
-      link: "",
-      tags: ["C++", "Data Structures"]
-    },
-    {
-      id: 25,
-      name: "Workshop on Space Based Inputs for Village Level Assessment",
-      issuer: "ISRO, IIRS",
-      date: "Nov 2024",
-      link: "https://drive.google.com/file/d/1xh5hmyNJydisT7tPKMIe-yFl5rNxafAg/view?usp=drive_link",
-      tags: ["Remote Sensing", "Village Assessment"]
-    },
- {
-      id: 26,
-      name: "Introduction to Python",
-      issuer: "Infosys Springboard",
-      date: "Oct 2024",
-      link: "https://drive.google.com/file/d/1Lkfq1ssEUpl6dOYmNXpzgdXGRO6iJVo_/view?usp=drive_link",
-      tags: ["Python"]
-    },
-    {
-      id: 27,
-      name: "Mastering Python",
-      issuer: "Infosys Springboard",
-      date: "Oct 2024",
-      link: "https://drive.google.com/file/d/1ytGbDBfWTiqNlYx4tVaFGW-AM5f1wYfZ/view?usp=sharing",
-      tags: ["Python"]
-    },
-    {
-      id: 28,
-      name: "Overview of Global Navigation System",
-      issuer: "ISRO, IIRS",
-      date: "Oct 2024",
-      link: "https://drive.google.com/file/d/1bw9Z7hGdMuQkgXBKGKPhUgR1vNT5Mk_U/view?usp=drive_link",
-      tags: ["GNSS"]
-    },
-    {
-      id: 29,
-      name: "The Absolute Beginners Guide to Cybersecurity Part 2",
-      issuer: "Udemy",
-      date: "Oct 2024",
-      link: "https://drive.google.com/file/d/1bnqvXjJxu3K_zVXpZf18WbqyIgZQbM_-/view?usp=sharing",
-      tags: ["Cybersecurity"]
-    },
-    {
-      id: 30,
-      name: "Java Basic",
-      issuer: "HackerRank",
-      date: "Sep 2024",
-      link: "https://drive.google.com/file/d/1F9wfrCBvPK-lMCLyVPbOFLCV-jxd2oxX/view?usp=sharing",
-      tags: ["Java"]
-    },
-{
-  id: 31,
-  name: "AI For Everyone Specialization",
-  issuer: "IBM, Coursera",
-  date: "Aug 2024",
-  link: "https://www.coursera.org/account/accomplishments/specialization/3ZFB9N4SGDX1",
-  tags: ["AI", "IBM"]
-},
-{
-  id: 32,
-  name: "Data Analysis with Python",
-  issuer: "IBM, Coursera",
-  date: "Aug 2024",
-  link: "https://www.coursera.org/account/accomplishments/records/P6LYTOID7NAF",
-  tags: ["Python", "Data Analysis"]
-},
-{
-  id: 33,
-  name: "Gender Equality",
-  issuer: "University of Western Australia, Coursera",
-  date: "Aug 2024",
-  link: "https://www.coursera.org/account/accomplishments/records/J3QW4BQZH4Z4",
-  tags: ["Social", "Equality"]
-},
-{
-  id: 34,
-  name: "Gender and Sexuality: Diversity and Inclusion in the Workplace",
-  issuer: "University of Pittsburgh, Coursera",
-  date: "Aug 2024",
-  link: "https://www.coursera.org/account/accomplishments/records/HNDRA9Z9SFY9",
-  tags: ["Diversity", "Inclusion"]
-},
-{
-  id: 35,
-  name: "Generative AI: Prompt Engineering Basics",
-  issuer: "IBM, Coursera",
-  date: "Aug 2024",
-  link: "https://www.coursera.org/account/accomplishments/records/Q3FEA93EFCKN",
-  tags: ["AI", "Prompt Engineering"]
-},
-{
-  id: 36,
-  name: "Python for Data Analysis: Pandas and NumPy",
-  issuer: "Coursera",
-  date: "Aug 2024",
-  link: "https://www.coursera.org/account/accomplishments/records/0NQWBJC9VVM8",
-  tags: ["Python", "Pandas", "NumPy"]
-},
-{
-  id: 37,
-  name: "Career Essentials in Generative AI",
-  issuer: "Microsoft, LinkedIn",
-  date: "Jun 2024",
-  link: "https://www.linkedin.com/learning/certificates/17b1bc60b3e424058eb04bec485f6c3a573e3cdd526e5274099134eef9a44bb6",
-  tags: ["Generative AI"]
-},
-{
-  id: 38,
-  name: "Generative AI: The Evolution of Thoughtful Online Search",
-  issuer: "LinkedIn",
-  date: "Jun 2024",
-  link: "https://www.linkedin.com/learning/certificates/1cbebfbf5a94f1764c2c2d6a98b119f5694f3ba408575e01fef5a30be680b9e3",
-  tags: ["Generative AI"]
-},
-{
-  id: 39,
-  name: "Learning Microsoft 365 Copilot",
-  issuer: "LinkedIn",
-  date: "Jun 2024",
-  link: "https://www.linkedin.com/learning/certificates/ae0d5704f763e4b8048a6fa78e7d7f9796d4f272c7fcb8700fbce6b8d5e9780a",
-  tags: ["Microsoft", "Productivity"]
-},
-{
-  id: 40,
-  name: "Streamlining Your Work with Microsoft Copilot",
-  issuer: "LinkedIn",
-  date: "Jun 2024",
-  link: "https://www.linkedin.com/learning/certificates/ccf7ee7a8d8591f8d69e6f3256eadce068bb59c9494f21c1bad28ffdbb3eb8c4",
-  tags: ["Microsoft", "Productivity"]
-},
-{
-  id: 41,
-  name: "Google Introduction to Generative AI",
-  issuer: "Coursera",
-  date: "May 2024",
-  link: "https://www.coursera.org/account/accomplishments/records/X5BENGQ2QWBR",
-  tags: ["Generative AI", "Google"]
-},
-{
-  id: 42,
-  name: "Problem Solving Basics",
-  issuer: "HackerRank",
-  date: "May 2024",
-  link: "https://www.hackerrank.com/certificates/iframe/5412a2a8ad7e",
-  tags: ["Problem Solving"]
-},
-{
-  id: 43,
-  name: "Quantum Mechanics",
-  issuer: "University of Colorado Boulder, Coursera",
-  date: "May 2024",
-  link: "https://www.coursera.org/account/accomplishments/records/ZC8HNJ2SUV32",
-  tags: ["Quantum Mechanics"]
-},
-{
-  id: 44,
-  name: "The Absolute Beginners Guide to Cybersecurity Part 1",
-  issuer: "Udemy",
-  date: "May 2024",
-  link: "https://drive.google.com/file/d/PLACEHOLDER", // please provide if you have it
-  tags: ["Cybersecurity"]
-},
-{
-  id: 45,
-  name: "Computer Networking",
-  issuer: "Illinois Institute of Technology, Coursera",
-  date: "Apr 2024",
-  link: "https://www.coursera.org/account/accomplishments/records/JYKG5MAD2REN",
-  tags: ["Networking"]
-},
-{
-  id: 46,
-  name: "Game Development Workshop",
-  issuer: "St. Peters Engineering College",
-  date: "Apr 2024",
-  link: "https://drive.google.com/file/d/1P86FbRJqlS9SdxRuXBm4NAaQhfZCf0eR/view?usp=sharing",
-  tags: ["Game Development"]
-},
-{
-  id: 47,
-  name: "Google Crash Course on Python",
-  issuer: "Google, Coursera",
-  date: "Apr 2024",
-  link: "https://www.coursera.org/account/accomplishments/records/8MWBY55LDBU4",
-  tags: ["Python"]
-},
-{
-  id: 48,
-  name: "Cloud Computing Basics",
-  issuer: "LearnQuest, Coursera",
-  date: "Mar 2024",
-  link: "https://www.coursera.org/account/accomplishments/records/4NP3YAJEKFAC",
-  tags: ["Cloud Computing"]
-},
-{
-  id: 49,
-  name: "Introduction to Large Language Models",
-  issuer: "Google, Coursera",
-  date: "Mar 2024",
-  link: "https://www.coursera.org/account/accomplishments/records/CFWVAQMJWXWD",
-  tags: ["LLMs", "AI"]
-},
-{
-  id: 50,
-  name: "C Programming Language",
-  issuer: "St. Peters Engineering College",
-  date: "Feb 2024",
-  link: "https://drive.google.com/file/d/1YsOYh3dwuQ9xCD5kKfw9A59lUyPbF9iU/view?usp=sharing",
-  tags: ["C Programming"]
-},
-{
-  id: 51,
-  name: "Machine Learning for All",
-  issuer: "University of London, Coursera",
-  date: "Feb 2024",
-  link: "https://www.coursera.org/account/accomplishments/records/VQZQEAPTMVD5",
-  tags: ["Machine Learning"]
-},
-{
-  id: 52,
-  name: "Nanotechnology and Nanosensors",
-  issuer: "United Latino Students Association, Coursera",
-  date: "Jan 2024",
-  link: "https://www.coursera.org/account/accomplishments/records/UQZX4NUPF43E",
-  tags: ["Nanotechnology"]
-},
-{
-  id: 53,
-  name: "Meta Foundation of AR",
-  issuer: "Meta, Coursera",
-  date: "Jan 2024",
-  link: "https://www.coursera.org/account/accomplishments/records/NPUDA7ULEJ5Q",
-  tags: ["AR", "Meta"]
-},
-{
-  id: 54,
-  name: "Introduction to Java",
-  issuer: "Coursera",
-  date: "Jan 2024",
-  link: "https://www.coursera.org/account/accomplishments/records/5LAFCX7BS9LY",
-  tags: ["Java"]
-},
-{
-  id: 55,
-  name: "Introduction to Artificial Intelligence",
-  issuer: "IBM, Coursera",
-  date: "Jan 2024",
-  link: "https://www.coursera.org/account/accomplishments/records/Q9BVW8JSGG3Q",
-  tags: ["AI", "IBM"]
-},
-{
-  id: 56,
-  name: "Google Foundation of Cybersecurity",
-  issuer: "Google, Coursera",
-  date: "Jan 2024",
-  link: "https://www.coursera.org/account/accomplishments/records/UY9S3QW63D5L",
-  tags: ["Cybersecurity"]
-},
-{
-  id: 57,
-  name: "C++ for C Programmers",
-  issuer: "University of California, Santa Cruz, Coursera",
-  date: "Jan 2024",
-  link: "https://www.coursera.org/account/accomplishments/records/DE4MPT7XS8MX",
-  tags: ["C++"]
-},
-{
-  id: 58,
-  name: "C for Everyone: Structured Programming",
-  issuer: "University of California, Santa Cruz, Coursera",
-  date: "Jan 2024",
-  link: "https://www.coursera.org/account/accomplishments/records/2ATQ36D9NS5H",
-  tags: ["C Programming"]
-}
-  ]
-  const competitions = [
+  {
+    id: 1,
+    name: "Deep Learning",
+    issuer: "NPTEL, IIT Madras",
+    date: "2025",
+    link: "",
+    tags: ["Deep Learning", "AI"]
+  },
+  {
+    id: 2,
+    name: "Mathematical Foundation of Machine Learning",
+    issuer: "NPTEL, IISc Bangalore",
+    date: "2025",
+    link: "",
+    tags: ["Machine Learning", "Mathematics"]
+  },
+  {
+    id: 3,
+    name: "AI Skill Passport",
+    issuer: "EY & Microsoft",
+    date: "2025",
+    link: "",
+    tags: ["AI"]
+  },
+  {
+    id: 4,
+    name: "A Hands-On Guide to MLOps",
+    issuer: "Pregrad",
+    date: "2025",
+    link: "",
+    tags: ["MLOps"]
+  },
+  {
+    id: 5,
+    name: "N8N Crash Course",
+    issuer: "LetsUpgrade",
+    date: "2025",
+    link: "",
+    tags: ["Automation"]
+  },
+
+  // ===================== Python (split from Essentials 1 & 2) =====================
+  {
+    id: 6,
+    name: "Python Essentials 1",
+    issuer: "Cisco Networking Academy",
+    date: "2025",
+    link: "",
+    tags: ["Python"]
+  },
+  {
+    id: 7,
+    name: "Python Essentials 2",
+    issuer: "Cisco Networking Academy",
+    date: "2025",
+    link: "",
+    tags: ["Python"]
+  },
+
+  {
+    id: 8,
+    name: "Introduction to Cybersecurity",
+    issuer: "Cisco Networking Academy",
+    date: "2023",
+    link: "https://www.credly.com/badges/b3d2ba14-aeb8-40c1-8630-70e387b209fc/public_url",
+    tags: ["Cybersecurity"]
+  },
+  {
+    id: 9,
+    name: "Networking Basics",
+    issuer: "Cisco Networking Academy",
+    date: "2025",
+    link: "https://www.credly.com/badges/c976ccd7-2f18-4b80-8c34-322ab1c58ae3",
+    tags: ["Networking"]
+  },
+  {
+    id: 10,
+    name: "Quantum Computing Introduction",
+    issuer: "Fractal (Coursera)",
+    date: "2025",
+    link: "https://www.coursera.org/account/accomplishments/records/74P9CVZULTNX",
+    tags: ["Quantum Computing"]
+  },
+  {
+    id: 11,
+    name: "Python Data Visualization",
+    issuer: "Rice University (Coursera)",
+    date: "2025",
+    link: "https://www.coursera.org/account/accomplishments/records/HM3WUFDFKVV1",
+    tags: ["Python", "Visualization"]
+  },
+  {
+    id: 12,
+    name: "Data Visualization with Python & R for Engineers",
+    issuer: "Northeastern University",
+    date: "2025",
+    link: "https://www.coursera.org/account/accomplishments/records/GIAYS7XO9CC8",
+    tags: ["Python", "R", "Data Visualization"]
+  },
+  {
+    id: 13,
+    name: "Overview of Data Visualization",
+    issuer: "Coursera",
+    date: "2025",
+    link: "https://www.coursera.org/account/accomplishments/records/T6V0VXSF0PSD",
+    tags: ["Data Visualization"]
+  },
+  {
+    id: 14,
+    name: "Cloud Computing Basics",
+    issuer: "LearnQuest (Coursera)",
+    date: "2024",
+    link: "https://www.coursera.org/account/accomplishments/records/4NP3YAJEKFAC",
+    tags: ["Cloud"]
+  },
+  {
+    id: 15,
+    name: "Computer Networking",
+    issuer: "Illinois Institute of Technology",
+    date: "2024",
+    link: "https://www.coursera.org/account/accomplishments/records/JYKG5MAD2REN",
+    tags: ["Networking"]
+  },
+  {
+    id: 16,
+    name: "Introduction to Large Language Models",
+    issuer: "Google",
+    date: "2024",
+    link: "https://www.coursera.org/account/accomplishments/records/CFWVAQMJWXWD",
+    tags: ["LLM", "AI"]
+  },
+  {
+    id: 17,
+    name: "Google Crash Course on Python",
+    issuer: "Google",
+    date: "2024",
+    link: "https://www.coursera.org/account/accomplishments/records/8MWBY55LDBU4",
+    tags: ["Python"]
+  },
+  {
+    id: 18,
+    name: "Google Foundations of Cybersecurity",
+    issuer: "Google",
+    date: "2024",
+    link: "https://www.coursera.org/account/accomplishments/records/UY9S3QW63D5L",
+    tags: ["Cybersecurity"]
+  },
+  {
+    id: 19,
+    name: "Introduction to Artificial Intelligence",
+    issuer: "IBM",
+    date: "2024",
+    link: "https://www.coursera.org/account/accomplishments/records/Q9BVW8JSGG3Q",
+    tags: ["AI"]
+  },
+  {
+    id: 20,
+    name: "Machine Learning for All",
+    issuer: "University of London",
+    date: "2024",
+    link: "https://www.coursera.org/account/accomplishments/records/VQZQEAPTMVD5",
+    tags: ["Machine Learning"]
+  },
+  {
+    id: 21,
+    name: "Python for Data Analysis (Pandas & NumPy)",
+    issuer: "Coursera",
+    date: "2024",
+    link: "https://www.coursera.org/account/accomplishments/records/0NQWBJC9VVM8",
+    tags: ["Python", "Data Analysis"]
+  },
+  {
+    id: 22,
+    name: "Data Analysis with Python",
+    issuer: "IBM",
+    date: "2024",
+    link: "https://www.coursera.org/account/accomplishments/records/P6LYTOID7NAF",
+    tags: ["Data Analysis"]
+  },
+  {
+    id: 23,
+    name: "Generative AI: Prompt Engineering Basics",
+    issuer: "IBM",
+    date: "2024",
+    link: "https://www.coursera.org/account/accomplishments/records/Q3FEA93EFCKN",
+    tags: ["GenAI"]
+  },
+  {
+    id: 24,
+    name: "Career Essentials in Generative AI",
+    issuer: "Microsoft & LinkedIn",
+    date: "2024",
+    link: "https://www.linkedin.com/learning/certificates/17b1bc60b3e424058eb04bec485f6c3a573e3cdd526e5274099134eef9a44bb6",
+    tags: ["GenAI"]
+  },
+  {
+    id: 25,
+    name: "Learning Microsoft 365 Copilot",
+    issuer: "LinkedIn",
+    date: "2024",
+    link: "https://www.linkedin.com/learning/certificates/ae0d5704f763e4b8048a6fa78e7d7f9796d4f272c7fcb8700fbce6b8d5e9780a",
+    tags: ["Microsoft"]
+  },
+  {
+    id: 26,
+    name: "Streamlining Work with Microsoft Copilot",
+    issuer: "LinkedIn",
+    date: "2024",
+    link: "https://www.linkedin.com/learning/certificates/ccf7ee7a8d8591f8d69e6f3256eadce068bb59c9494f21c1bad28ffdbb3eb8c4",
+    tags: ["Microsoft"]
+  },
+  {
+    id: 27,
+    name: "Google Introduction to Generative AI",
+    issuer: "Google",
+    date: "2024",
+    link: "https://www.coursera.org/account/accomplishments/records/X5BENGQ2QWBR",
+    tags: ["GenAI"]
+  },
+  {
+    id: 28,
+    name: "Quantum Mechanics",
+    issuer: "University of Colorado Boulder",
+    date: "2024",
+    link: "https://www.coursera.org/account/accomplishments/records/ZC8HNJ2SUV32",
+    tags: ["Quantum Physics"]
+  },
+  {
+    id: 29,
+    name: "Meta Foundations of AR",
+    issuer: "Meta",
+    date: "2024",
+    link: "https://www.coursera.org/account/accomplishments/records/NPUDA7ULEJ5Q",
+    tags: ["AR"]
+  },
+  {
+    id: 30,
+    name: "Introduction to Java",
+    issuer: "Coursera",
+    date: "2024",
+    link: "https://www.coursera.org/account/accomplishments/records/5LAFCX7BS9LY",
+    tags: ["Java"]
+  },
+  {
+    id: 31,
+    name: "C++ for C Programmers",
+    issuer: "UCSC",
+    date: "2024",
+    link: "https://www.coursera.org/account/accomplishments/records/DE4MPT7XS8MX",
+    tags: ["C++"]
+  },
+  {
+    id: 32,
+    name: "C for Everyone: Structured Programming",
+    issuer: "UCSC",
+    date: "2024",
+    link: "https://www.coursera.org/account/accomplishments/records/2ATQ36D9NS5H",
+    tags: ["C"]
+  },
+  {
+    id: 33,
+    name: "Mastering Python",
+    issuer: "Infosys Springboard",
+    date: "2024",
+    link: "https://drive.google.com/file/d/1ytGbDBfWTiqNlYx4tVaFGW-AM5f1wYfZ/view",
+    tags: ["Python"]
+  },
+  {
+    id: 34,
+    name: "Introduction to Python",
+    issuer: "Infosys Springboard",
+    date: "2024",
+    link: "https://drive.google.com/file/d/1Lkfq1ssEUpl6dOYmNXpzgdXGRO6iJVo_/view",
+    tags: ["Python"]
+  },
+  {
+    id: 35,
+    name: "SQL (Basic)",
+    issuer: "HackerRank",
+    date: "2024",
+    link: "",
+    tags: ["SQL"]
+  },
+  {
+    id: 36,
+    name: "Problem Solving (Basic)",
+    issuer: "HackerRank",
+    date: "2024",
+    link: "https://www.hackerrank.com/certificates/iframe/5412a2a8ad7e",
+    tags: ["Problem Solving"]
+  },
+
+  // ===================== ISRO / IIRS =====================
+
+  {
+    id: 37,
+    name: "Remote Sensing Data Analytics for Crop Production Forecasting",
+    issuer: "ISRO / IIRS",
+    date: "2025",
+    link: "",
+    tags: ["Remote Sensing", "GIS"]
+  },
+  {
+    id: 38,
+    name: "Archival & Access of Space Science Data",
+    issuer: "ISRO / IIRS",
+    date: "2025",
+    link: "",
+    tags: ["Space Science", "Data"]
+  },
+  {
+    id: 39,
+    name: "Geospatial Technology for Modelling Urban Environment",
+    issuer: "ISRO / IIRS",
+    date: "2025",
+    link: "",
+    tags: ["GIS", "Urban Modeling"]
+  },
+  {
+    id: 40,
+    name: "Method of Space Science Research",
+    issuer: "ISRO / IIRS",
+    date: "2025",
+    link: "",
+    tags: ["Space Science"]
+  },
+  {
+    id: 41,
+    name: "Recent Trends in Ecological Modelling & Simulation",
+    issuer: "ISRO / IIRS",
+    date: "2025",
+    link: "",
+    tags: ["Ecology", "Simulation"]
+  },
+  {
+    id: 42,
+    name: "Space Exploration Technology: An Overview",
+    issuer: "ISRO / IIRS",
+    date: "2025",
+    link: "",
+    tags: ["Space Technology"]
+  },
+  {
+    id: 43,
+    name: "Geodata Processing using Python & Machine Learning",
+    issuer: "ISRO / IIRS",
+    date: "2025",
+    link: "",
+    tags: ["Python", "ML", "GIS"]
+  },
+  {
+    id: 44,
+    name: "Workshop on Space Technology Applications",
+    issuer: "ISRO / IIRS",
+    date: "2025",
+    link: "",
+    tags: ["Space Technology"]
+  },
+  {
+    id: 45,
+    name: "Geodata Sharing & Cyber Security",
+    issuer: "ISRO / IIRS",
+    date: "2025",
+    link: "",
+    tags: ["Cybersecurity", "GIS"]
+  },
+  {
+    id: 46,
+    name: "Overview of Geocomputation & Geoweb Applications",
+    issuer: "ISRO / IIRS",
+    date: "2025",
+    link: "",
+    tags: ["Geospatial"]
+  },
+  {
+    id: 47,
+    name: "Deep Learning in Ecological Studies",
+    issuer: "ISRO / IIRS",
+    date: "2025",
+    link: "",
+    tags: ["Deep Learning", "Ecology"]
+  },
+  {
+    id: 48,
+    name: "Basics of Remote Sensing, GIS & GNSS",
+    issuer: "ISRO / IIRS",
+    date: "2025",
+    link: "",
+    tags: ["GIS", "Remote Sensing"]
+  },
+  {
+    id: 49,
+    name: "RS & GIS Applications in Natural Resource Management",
+    issuer: "ISRO / IIRS",
+    date: "2025",
+    link: "",
+    tags: ["GIS"]
+  },
+  {
+    id: 50,
+    name: "Air Pollutants: Monitoring & Modelling",
+    issuer: "ISRO / IIRS",
+    date: "2025",
+    link: "",
+    tags: ["Environment"]
+  },
+  {
+    id: 51,
+    name: "Overview of Geographical Information Systems",
+    issuer: "ISRO / IIRS",
+    date: "2025",
+    link: "",
+    tags: ["GIS"]
+  },
+  {
+    id: 52,
+    name: "Space-Based Inputs for Village-Level Crop Assessment",
+    issuer: "ISRO / IIRS",
+    date: "2025",
+    link: "",
+    tags: ["Agriculture", "GIS"]
+  },
+  {
+    id: 53,
+    name: "Overview of Global Navigation Satellite Systems",
+    issuer: "ISRO / IIRS",
+    date: "2025",
+    link: "",
+    tags: ["GNSS"]
+  },
+  {
+    id: 54,
+    name: "START-2025: Space Science & Technology Awareness Training",
+    issuer: "ISRO",
+    date: "2025",
+    link: "",
+    tags: ["Space Science"]
+  },
+
+  // ===================== Additional Certifications =====================
+
+  {
+    id: 55,
+    name: "Course on Computer Concepts",
+    issuer: "NIELIT",
+    date: "2024",
+    link: "",
+    tags: ["Computer Basics"]
+  },
+  {
+    id: 56,
+    name: "AI for Everyone",
+    issuer: "IBM",
+    date: "2024",
+    link: "",
+    tags: ["AI"]
+  },
+  {
+    id: 57,
+    name: "Java (Basic)",
+    issuer: "HackerRank",
+    date: "2024",
+    link: "",
+    tags: ["Java"]
+  },
+  {
+    id: 58,
+    name: "Mastering Data Structures using C & C++",
+    issuer: "Udemy",
+    date: "2024",
+    link: "",
+    tags: ["Data Structures", "C++"]
+  }
+];
+  
+ const competitions = [
+  // ---------------- 2026 ----------------
+
+  {
+    id: 20,
+    name: "Gen AI Forge Hackathon 2026",
+    issuer: "NASSCOM",
+    date: "2026",
+    description: "Participation in Gen AI Forge Hackathon 2026",
+    link: "",
+    tags: ["Hackathon", "AI"]
+  },
+  {
+    id: 21,
+    name: "EliteHer Hackathon 2026",
+    issuer: "Elite Coders",
+    date: "2026",
+    description: "Participation in EliteHer Hackathon 2026",
+    link: "",
+    tags: ["Hackathon"]
+  },
+  {
+    id: 22,
+    name: "NextGen AI Hackathon 2026",
+    issuer: "AI Academia",
+    date: "2026",
+    description: "Participation in NextGen AI Hackathon 2026",
+    link: "",
+    tags: ["Hackathon", "AI"]
+  },
+  {
+    id: 23,
+    name: "ForgeAscend'26 Mega Buildathon",
+    issuer: "KLH",
+    date: "2026",
+    description: "Participation in ForgeAscend'26 Mega Buildathon",
+    link: "",
+    tags: ["Hackathon"]
+  },
+  {
+    id: 24,
+    name: "CodeStorm | Enyugma'26",
+    issuer: "Unstop",
+    date: "2026",
+    description: "Participation in CodeStorm competition",
+    link: "",
+    tags: ["Coding"]
+  },
+  {
+    id: 25,
+    name: "Reverse Coding X | Shaastra 2026",
+    issuer: "IIT Madras",
+    date: "2026",
+    description: "Participation in Reverse Coding X",
+    link: "",
+    tags: ["Coding"]
+  },
+
+  // ---------------- 2026 Events / Fests ----------------
+
+  {
+    id: 33,
+    name: "Forge Inspira’26 Career & Corporate Fest",
+    issuer: "IIT Hyderabad",
+    date: "2026",
+    description: "Participation in career and corporate fest",
+    link: "",
+    tags: ["Fest"]
+  },
+  {
+    id: 34,
+    name: "Theme2Web",
+    issuer: "SPECFIESTA’26",
+    date: "2026",
+    description: "Participation in Theme2Web event",
+    link: "",
+    tags: ["Event"]
+  },
+  {
+    id: 35,
+    name: "Quest Arena",
+    issuer: "SPECFIESTA’26",
+    date: "2026",
+    description: "Participation in Quest Arena",
+    link: "",
+    tags: ["Event"]
+  },
+  {
+    id: 36,
+    name: "Code Shuffle",
+    issuer: "SPECFIESTA’26",
+    date: "2026",
+    description: "Participation in Code Shuffle",
+    link: "",
+    tags: ["Coding"]
+  },
+  {
+    id: 37,
+    name: "Techno Blitz (Project Expo)",
+    issuer: "SPECFIESTA’26",
+    date: "2026",
+    description: "Participation in Project Expo event",
+    link: "",
+    tags: ["Project"]
+  },
+  {
+    id: 38,
+    name: "BuildSphere (Paper Presentation)",
+    issuer: "SPECFIESTA’26",
+    date: "2026",
+    description: "Participation in Paper Presentation",
+    link: "",
+    tags: ["Presentation"]
+  },
+  {
+    id: 39,
+    name: "Mindscape (Poster Presentation)",
+    issuer: "SPECFIESTA’26",
+    date: "2026",
+    description: "Participation in Poster Presentation",
+    link: "",
+    tags: ["Poster"]
+  },
+
+  // ---------------- Workshops (date not specified) ----------------
+
+  {
+    id: 29,
+    name: "Image Processing with Computer Vision Workshop",
+    issuer: "Forge Inspira",
+    date: "",
+    description: "Workshop on Computer Vision and Image Processing",
+    link: "",
+    tags: ["Workshop", "AI"]
+  },
+  {
+    id: 30,
+    name: "Turbotron: 2-Day Hands-On Workshop",
+    issuer: "SPEC Infinitron",
+    date: "",
+    description: "Hands-on technical workshop",
+    link: "",
+    tags: ["Workshop"]
+  },
+  {
+    id: 31,
+    name: "Innovators Drone Workshop",
+    issuer: "SPEC Infinitrons",
+    date: "",
+    description: "Workshop on drone technology",
+    link: "",
+    tags: ["Workshop"]
+  },
+  {
+    id: 32,
+    name: "Break into Data Analytics Workshop",
+    issuer: "Coding Ninjas",
+    date: "",
+    description: "Workshop on Data Analytics fundamentals",
+    link: "",
+    tags: ["Workshop", "Data"]
+  },
+
+  // ---------------- 2025 ----------------
+
   {
     id: 1,
     name: "Code for Change AI Hackathon",
@@ -520,6 +697,45 @@ export default function Certifications() {
     link: "https://drive.google.com/file/d/1FxQhnQixENFgvDbGFkQdcuaefMI3WBZq/view?usp=drive_link",
     tags: ["Hackathon", "AI"]
   },
+  {
+    id: 19,
+    name: "Neuro Debugging | AI Infinity'25",
+    issuer: "Gradient - St. Peter's Engineering College",
+    date: "Jul 2025",
+    description: "Participation in Code Debugging event",
+    link: "https://drive.google.com/file/d/1REXgQDC3h2qZ8OjBTkWwWJ3bpQBJLuAR/view?usp=drive_link",
+    tags: ["Code Debugging"]
+  },
+  {
+    id: 26,
+    name: "MOSIP Decode 2025 | Synergy’25",
+    issuer: "IIIT Bangalore",
+    date: "2025",
+    description: "Participation in MOSIP Decode Challenge",
+    link: "",
+    tags: ["Hackathon"]
+  },
+  {
+    id: 27,
+    name: "NASA International Space Apps Challenge 2025",
+    issuer: "NASA",
+    date: "2025",
+    description: "Participation in NASA Space Apps Challenge",
+    link: "",
+    tags: ["Space", "Hackathon"]
+  },
+  {
+    id: 28,
+    name: "Adobe India Hackathon 2025",
+    issuer: "Adobe",
+    date: "2025",
+    description: "Participation in Adobe India Hackathon",
+    link: "",
+    tags: ["Hackathon"]
+  },
+
+  // ---------------- 2024 ----------------
+
   {
     id: 6,
     name: "2nd Prize – Poster Presentation",
@@ -583,6 +799,9 @@ export default function Certifications() {
     link: "https://drive.google.com/file/d/1YhdLVHtgMA4YL_WiC5iW_DiV-2-PZi0x/view?usp=sharing",
     tags: ["Quiz"]
   },
+
+  // ---------------- 2023 ----------------
+
   {
     id: 13,
     name: "National Mathematics Day",
@@ -628,30 +847,24 @@ export default function Certifications() {
     link: "https://drive.google.com/file/d/1YCM4rnGpUeAYKhiCkODjl2I_nuUX2xpr/view?usp=sharing",
     tags: ["Essay"]
   },
+
+  // ---------------- 2021 ----------------
+
   {
     id: 18,
     name: "ISRO Cyberspace Quiz",
     issuer: "ISRO",
     date: "Feb 2021",
     description: "Participation in Cyberspace Quiz Competition",
-    link: "", // No link provided
+    link: "",
     tags: ["ISRO", "Quiz"]
-  },
-  {
-  
-    id: 19,
-    name: "Neuro Debugging | AI Infinity'25",
-    issuer: "Gradient - St. Peter's Engineerig College",
-    date: "Jul 2025",
-    description: "Participation in Code Debugging event",
-    link: "https://drive.google.com/file/d/1REXgQDC3h2qZ8OjBTkWwWJ3bpQBJLuAR/view?usp=drive_link", // No link provided
-    tags: ["Code Debugging"]
   }
-
 ];
 
 
-  const allCerts = activeTab === "courses" ? courses : competitions
+ const fullList = activeTab === "courses" ? courses : competitions
+
+const allCerts = showAll ? fullList : fullList.slice(0, INITIAL_COUNT)
 
   return (
     <section id="certifications" className="py-20 md:py-28 bg-black">
@@ -663,13 +876,15 @@ export default function Certifications() {
           transition={{ duration: 0.5 }}
           className="text-center mb-12"
         >
+          
           <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl bg-gradient-to-r from-purple-400 via-purple-500 to-purple-600 bg-clip-text text-transparent mb-4">
             Certifications
           </h2>
           <p className="text-purple-300 text-lg">
-            {allCerts.length} {activeTab === "courses" ? "Courses" : "Competitions"}
+            {fullList.length} {activeTab === "courses" ? "Courses" : "Competitions"}
           </p>
         </motion.div>
+        
 
         <div className="flex gap-3 justify-center mb-10">
           <Button
@@ -684,7 +899,7 @@ export default function Certifications() {
             variant={activeTab === "competitions" ? "default" : "outline"}
             className="gap-2"
           >
-            🏆 Competitions
+            🏆 Hackathons & Events 
           </Button>
         </div>
 
@@ -726,6 +941,15 @@ export default function Certifications() {
             </motion.div>
           ))}
         </motion.div>
+         <div className="flex justify-center mt-6">
+    <Button
+      onClick={() => setShowAll((prev) => !prev)}
+      variant="outline"
+      className="text-purple-300 border-purple-500/30 hover:bg-purple-950/30"
+    >
+      {showAll ? "Show Less" : "Show More"}
+    </Button>
+  </div>
       </div>
     </section>
   )
